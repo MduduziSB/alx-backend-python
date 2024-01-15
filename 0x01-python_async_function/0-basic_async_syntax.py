@@ -13,12 +13,12 @@ import time
 import random
 
 
-async def wait_random(max_delay: int = 10) -> int:
+async def wait_random(max_delay: int = 10) -> float:
     """
     A coroutine that awaits random time and finnally returns it
     parameter(s):
     - max_delay: integer number
-    
+
     Return:
     - Delayed time: floating point number in seconds
     """

@@ -8,7 +8,9 @@ Spawns wait_random n times with the specified max_delay.
 wait_n returns the list of all the delays (float values).
 The list of the delays is arranged in ascending order without using sort().
 """
-import asyncio, time, random
+import asyncio
+import time
+import random
 from typing import List
 wait_random = __import__('0-basic_async_syntax').wait_random
 
@@ -25,7 +27,7 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     """
     delay_list = []
 
-    for count in range (0, n):
+    for count in range(n):
         delay = await wait_random(max_delay)
         delay_list.append(delay)
     return sorted(delay_list)
