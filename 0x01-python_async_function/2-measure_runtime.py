@@ -11,7 +11,7 @@ import time
 wait_n = __import__('1-concurrent_coroutines').wait_n
 
 
-def measure_time(n: int, max_delay: float):
+def measure_time(n: int, max_delay: float) -> float:
     """
     This function computes the amount of time wait_n needed to complete
     Arguments:
