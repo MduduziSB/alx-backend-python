@@ -21,8 +21,10 @@ def measure_time(n: int, max_delay: float):
     Return:
     This function returns the total amount of time wait_n takes per n
     """
-    s = time.perf_counter()
+    start_time = time.time()
 
     asyncio.run(wait_n(n, max_delay))
 
-    return (time.perf_counter() - s) / n
+    end_time = time.time()
+
+    return (end_time - start_time) / n
