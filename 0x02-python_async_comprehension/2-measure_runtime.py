@@ -16,11 +16,8 @@ async def measure_runtime() -> float:
     Measures the total time that this coroutine takes to complete execution
     """
     start_time = time.perf_counter()
-    await asyncio.gather(
-        async_comprehension(),
-        async_comprehension(),
-        async_comprehension(),
-        async_comprehension()
-    )
+    async_list = [async_comprehension() for _ in range(4)]
+    await asyncio.gather(*async_list)
     end_time = time.perf_counter()
+
     return end_time - start_time
