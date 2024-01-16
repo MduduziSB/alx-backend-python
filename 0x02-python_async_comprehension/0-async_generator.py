@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+"""
+This is a coroutine called async_generator that takes no arguments.
+
+The coroutine loops 10 times,
+each time asynchronously wait 1 second,
+then yield a random number between 0 and 10.
+random module is used to generate numbers.
+"""
+import asyncio
+import random
+from typing import Generator
+
+async def async_generator() -> Generator[float, None, None]:
+    """
+    This coroutine yields a random floating point number between 0 and 10
+    """
+    for i in range(10):
+        await asyncio.sleep(1)
+        rand_float = random.uniform(0, 10)
+        yield rand_float
