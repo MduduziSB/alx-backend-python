@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """ TestAccessNestedMap class module """
 
-
+from typing import Dict, Tuple, Union
 from unittest import TestCase, mock
 from unittest.mock import patch, Mock
 from parameterized import parameterized
 
 from utils import access_nested_map, get_json, memoize
+from github_client import GithubOrgClient
 
 
 class TestAccessNestedMap(TestCase):
@@ -16,7 +17,11 @@ class TestAccessNestedMap(TestCase):
         ({"a": {"b": 2}}, ("a",), {'b': 2}),
         ({"a": {"b": 2}}, ("a", "b"), 2),
     ])
-    def test_access_nested_map(self, nested_map, path, expected_output):
+    def test_access_nested_map(
+            self,
+            nested_map: Dict,
+            path: Tuple[str],
+            expected_output: Union[Dict, int]) -> None:
         """ method to test that the method returns what it is supposed to. """
         self.assertEqual(access_nested_map(nested_map, path), expected_output)
 
@@ -24,11 +29,14 @@ class TestAccessNestedMap(TestCase):
         ({}, ("a",)),
         ({"a": 1}, ("a", "b")),
     ])
-    def test_access_nested_map_exception(self, nested_map, path, unexp_output):
+    def test_access_nested_map_exception(
+            self,
+            nested_map: Dict,
+            path: Tuple[str],
+            unexp_output: Exception) -> None:
         """ KeyError Test method """
-        with self.assertRaises(KeyError) as error:
+        with self.assertRaises(unexp_output):
             access_nested_map(nested_map, path)
-        self.assertEqual(error.exception, unexp_output)
 
 
 class TestGetJson(TestCase):
