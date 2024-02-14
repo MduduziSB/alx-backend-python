@@ -10,6 +10,7 @@ from requests import HTTPError
 
 from client import GithubOrgClient
 from fixtures import TEST_PAYLOAD
+import unittest
 
 
 class TestGithubOrgClient(TestCase):
